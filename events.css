@@ -1,7 +1,7 @@
 body,html{
     border: 0;
     margin:0;
-    background-image: url('Images/back3.jpg');
+    background-image: url('Images/back2.jpg');
     background-size: cover;
     background-attachment: fixed;
     width: 100%;
@@ -21,6 +21,7 @@ body,html{
 
 
 .head{
+    color:whitesmoke;
     text-align: center;
     margin-right:100px;
     font-family: "She Smiles";
