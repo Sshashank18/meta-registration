@@ -1,27 +1,8 @@
-@font-face {
-    font-family: 'She Smiles Regular';
-    src: url("She Smiles.woff");
-}
 
 html,body{
     margin:0px;
     border:0px;
 }
-
-@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
-
-@import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
-
-@font-face {
-    font-family: 'She Smiles Regular';
-    font-style: normal;
-    font-weight: normal;
-    src: local('She Smiles Regular'), url('She Smiles.woff') format('woff');
-    }
-
-    @font-face {font-family:"Alvaro Condensed";src:url("Alvaro-Condensed.eot?") format("eot"),url("Alvaro-Condensed.woff") format("woff"),url("Alvaro-Condensed.ttf") format("truetype"),url("Alvaro-Condensed.svg#AlvaroCondensed") format("svg");font-weight:normal;font-style:normal;}
-    
-
 
 
 a{
@@ -88,7 +69,7 @@ ul{
 
 li{
     margin:0px 15px 0px 10px;
-    font-family: "Alvaro Condensed" !important;
+    font-family: 'Bangers';
     font-size: 50px;
     text-align: center;
 }
@@ -154,14 +135,14 @@ li{
     /* color:black; */
     font-weight: 50;
     font-size:20px;
-    font-family: "https://fonts.googleapis.com/css?family=Raleway&display=swap";
+    font-family: 'Raleway',sans-serif;
 }
 
 
 
 .head{
     text-align: center;
-    font-family: "She Smiles" !important;
+    font-family:'Bangers',cursive;
 }
 
 
@@ -242,7 +223,7 @@ li{
 
 .memName{
     text-align: center;
-    font-family: "Anton" !important;
+    font-family: 'Anton',sans-serif;
 }
 
 .memPost{
@@ -406,7 +387,7 @@ li{
 
     .memName{
         font-size:23px;
-        font-family: 'Raleway' !important;
+        font-family: 'Raleway',sans-serif;
     }
     
     .aboutImg >img{
@@ -492,7 +473,7 @@ li{
 
     .memName{
         font-size:27px;
-        font-family: 'Raleway' !important;
+        font-family: 'Raleway',sans-serif;
     }
     
     .aboutImg >img{
@@ -584,7 +565,7 @@ li{
 
     .memName{
         font-size:33px;
-        font-family: 'Raleway' !important;
+        font-family: 'Raleway',sans-serif;
     }
     
     .aboutImg >img{
