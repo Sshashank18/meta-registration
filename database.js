@@ -1,12 +1,10 @@
 const Sequelize=require("sequelize");
 
 const {DATABASE_HOST, DATABASE_NAME, DATABASE_USER, DATABASE_PORT, DATABASE_PASSWORD} = require('./environments');
-// const { DATABASE_URL } = require('./environments');
 
 let database = null;
-
-if (process.env.PORT) {
-    // database = new Sequelize(DATABASE_URL);
+console.log(process.env.NODE_ENV);
+if (process.env.NODE_ENV === "production") {
     database = new Sequelize(DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD, {
         host: DATABASE_HOST,
         port: DATABASE_PORT,

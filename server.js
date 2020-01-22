@@ -99,7 +99,7 @@ app.post('/success', (req, res) => {
 		Mobile: req.query.mobile,
 		Branch: req.query.branch,
 		Year: req.query.year,
-		// CollegeName: req.query.college,
+		CollegeName: req.query.college,
 		Event: req.query.event,
 		Amount: req.query.amount
 	})
