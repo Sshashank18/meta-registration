@@ -2,13 +2,14 @@ const checksum_lib = require('./checksum/checksum');
 
 const express = require('express');
 const shortid = require('shortid');
-
+const cors = require('cors');
 
 const { PORT, DOMAIN } = require('./environments');
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 app.use(express.static(__dirname+"/"));
 
