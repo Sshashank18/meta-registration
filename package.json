@@ -9,8 +9,7 @@
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.3",
     "shortid": "^2.2.15",
-    "sqlite": "^3.0.3",
-    "sqlite3": "^4.1.1"
+    "sqlite": "^3.0.3"
   },
   "devDependencies": {},
   "scripts": {

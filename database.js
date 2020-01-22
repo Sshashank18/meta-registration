@@ -43,7 +43,7 @@ const Customers=database.define("customers",{
     },
     Branch:{
         type:Sequelize.STRING,
-        allowNull:true
+        allowNull:false
     },
     Year:{
         type:Sequelize.INTEGER,
