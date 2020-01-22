@@ -1,5 +1,5 @@
 module.exports.PORT = 3000;
-module.exports.DOMAIN = `https://metacognition.herokuapp.com/`;
+module.exports.DOMAIN = `https://metacognition-registration.herokuapp.com/`;
 
 module.exports.DATABASE_HOST = "ec2-3-220-86-239.compute-1.amazonaws.com";
 module.exports.DATABASE_NAME = "d7tpmck9td7uuo";
