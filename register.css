@@ -8,8 +8,6 @@ body{
     background-color: #fff;
     width:85%;
     padding-top:30px;
-    /* border:1px solid black; */
-    /* box-shadow: 5px 5px 5px 5px black; */
     height:1100px;
     margin-bottom:25px;
 }
@@ -17,7 +15,7 @@ body{
 .heading{
     margin-top:15px;
     margin-bottom:15px;
-    font-family:'She Smiles';
+    font-family:'Bangers';
     text-align: center;
 }
 
