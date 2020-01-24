@@ -43,13 +43,10 @@ app.get('/email',(req,res)=>{
 		if (error) {
 		  console.log(error);
 		} else {
-		  console.log('Email sent: ' + info.response);
+			res.redirect(DOMAIN + 'success');
 		}
 	  })
-	  .then(()=>{
-		res.redirect(DOMAIN + 'success');
-	  })
-	
+	  
 })
 
 
