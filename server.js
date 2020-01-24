@@ -4,6 +4,11 @@ const express = require('express');
 const shortid = require('shortid');
 const cors = require('cors');
 
+var nodemailer = require('nodemailer');
+
+
+
+
 const { PORT, DOMAIN } = require('./environments');
 
 const app = express();
@@ -15,15 +20,38 @@ app.use(express.static(__dirname+"/"));
 
 const {database,Customers}=require('./database');
 
-app.get('/details',(req,res)=>{
-	return Customers.findOne({
-		where:{
-			Name:req.body.Name
-		},
-		attributes:['Name','Email','Mobile','Amount']
-	})
-	.then(()=>res.redirect())
+
+
+app.get('/email',(req,res)=>{
+
+	var transporter = nodemailer.createTransport({
+		service: 'gmail',
+		auth: {
+		  user: 'teamenthiran@gmail.com',
+		  pass: 'TeamEnthiran6.0'
+		}
+	  });
+	  
+	  var mailOptions = {
+		from: 'teamenthiran@gmail.com',
+		to: req.query.mail,
+		subject: 'Registration Confirmation',
+		text: 'You are registered'
+	  };
+	  
+	  transporter.sendMail(mailOptions, function(error, info){
+		if (error) {
+		  console.log(error);
+		} else {
+		  console.log('Email sent: ' + info.response);
+		}
+	  })
+	  .then(()=>{
+		res.redirect(DOMAIN + 'success');
+	  })
+	
 })
+
 
 app.get('/paytm', (req, res) => {
 
@@ -70,6 +98,7 @@ app.get('/paytm', (req, res) => {
 });
 
 
+
 app.post('/register',(req,res)=>{
 	Customers.findOne({
 		where: {
@@ -105,8 +134,7 @@ app.post('/success', (req, res) => {
 		Amount: req.query.amount
 	})
 		.then(() => {
-
-			res.redirect(DOMAIN + 'success');
+			res.redirect(`/email?mail=${req.query.email}`);
 		});
 
 
