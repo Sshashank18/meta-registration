@@ -162,7 +162,8 @@ app.post('/success', (req, res) => {
 			Amount: req.query.amount
 		})
 		.then(() => {
-			res.redirect(`/email?mail=${req.query.email}`);
+			// res.redirect(`/email?mail=${req.query.email}`);
+			res.redirect('/success');
 		});
 });
 app.use('/success', express.static(__dirname + '/success.html'));
