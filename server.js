@@ -49,6 +49,8 @@ app.get('/email',(req,res)=>{
 	
 })
 
+// `${DOMAIN}success?name=${req.query.name}&email=${req.query.email}&mobile=${req.query.mobile}&branch=${req.query.branch}&year=${req.query.year}&college=${req.query.college}&event=${req.query.event}&amount=${req.query.amount}`
+
 app.get('/paytm', (req, res) => {
 	
 	const orderId = shortid.generate();
@@ -64,7 +66,7 @@ app.get('/paytm', (req, res) => {
 		"MOBILE_NO" : req.query.mobile,
 		"EMAIL" : req.query.email,
 		"TXN_AMOUNT" : req.query.amount,
-		"CALLBACK_URL" : `${DOMAIN}success?name=${req.query.name}&email=${req.query.email}&mobile=${req.query.mobile}&branch=${req.query.branch}&year=${req.query.year}&college=${req.query.college}&event=${req.query.event}&amount=${req.query.amount}`,
+		"CALLBACK_URL" : '/payverify',
 	};
 	
 	checksum_lib.genchecksum(paytmParams, "tdm2TE!6kUP%vlUb", function(err, checksum){
@@ -93,7 +95,7 @@ app.get('/paytm', (req, res) => {
 	});
 });
 
-
+app.use('/payverify', express.static(__dirname + '/paytm.html'));
 
 app.post('/register',(req,res)=>{
 	Customers.findOne({
@@ -116,7 +118,7 @@ app.post('/register',(req,res)=>{
 	});
 });
 
-app.post('/success', (req, res) => {
+app.post('/finalize',(req,res)=>{
 	var paytmChecksum = "";
 	
 	/**
@@ -124,11 +126,11 @@ app.post('/success', (req, res) => {
 	* received_data should contains all data received in POST
 	*/
 	var paytmParams = {};
-	for(var key in received_data){
+	for(var key in res){
 		if(key == "CHECKSUMHASH") {
-			paytmChecksum = received_data[key];
+			paytmChecksum = res[key];
 		} else {
-			paytmParams[key] = received_data[key];
+			paytmParams[key] = res[key];
 		}
 	}
 	
@@ -139,6 +141,15 @@ app.post('/success', (req, res) => {
 	var isValidChecksum = checksum_lib.verifychecksum(paytmParams, "tdm2TE!6kUP%vlUb", paytmChecksum);
 	if(isValidChecksum) {
 		console.log("Checksum Matched");
+
+		
+
+	} else {
+		console.log("Checksum Mismatched");
+	}
+})
+
+app.post('/success', (req, res) => {
 		Customers.create({
 			OrderId: req.body.ORDERID,
 			Name: req.query.name,
@@ -153,10 +164,6 @@ app.post('/success', (req, res) => {
 		.then(() => {
 			res.redirect(`/email?mail=${req.query.email}`);
 		});
-	} else {
-		console.log("Checksum Mismatched");
-	}
-	
 });
 app.use('/success', express.static(__dirname + '/success.html'));
 
