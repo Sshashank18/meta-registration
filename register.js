@@ -35,6 +35,7 @@ submit.click((event)=>{
 
     $.ajax({
         url: "https://metacognition-registration.herokuapp.com/register",
+        // url:"/register",
         type: "POST",
         data: {
             Name:Name.val(),
@@ -49,6 +50,8 @@ submit.click((event)=>{
         success: res => {
             console.log(res);
             if (res.message === "Send to register") {
+                // window.location=`/paytm?name=${Name.val()}&email=${Email.val()}&mobile=${Mobile.val()}&branch=${branch}&year=${year}&college=${collegeName.val()}&event=${eventName}&amount=${eventAmount}`;
+
                 window.location=`https://metacognition-registration.herokuapp.com/paytm?name=${Name.val()}&email=${Email.val()}&mobile=${Mobile.val()}&branch=${branch}&year=${year}&college=${collegeName.val()}&event=${eventName}&amount=${eventAmount}`;
             } else {
                 alert(res.message);
