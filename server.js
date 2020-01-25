@@ -25,10 +25,19 @@ const {database,Customers}=require('./database');
 app.get('/email',(req,res)=>{
 	
 	var transporter = nodemailer.createTransport({
-		service: 'gmail',
+		host: 'smtp.gmail.com',
+		port: 465,
+		secure: true,
 		auth: {
+			type: 'oauth2',
 			user: 'teamenthiran@gmail.com',
-			pass: 'Team2020'
+			clientId: '917390175122-r3d7b0ts3p4v34oe7d6slt3nilnpsnrr.apps.googleusercontent.com',
+			clientSecret: '917390175122-r3d7b0ts3p4v34oe7d6slt3nilnpsnrr.apps.googleusercontent.com',
+			refreshToken: '1//04oCkcmJfksA1CgYIARAAGAQSNwF-L9Irg0sXW2CHHCRBmyfQjmsFlh9cW0uCG2ZeM6RfwLqG8dX2TC-ZO70S01mMgNrHhpBp0YU'
+		},
+		tls: {
+			// do not fail on invalid certs
+			rejectUnauthorized: false
 		}
 	});
 	
@@ -48,7 +57,26 @@ app.get('/email',(req,res)=>{
 		}
 	})
 	
+	
+	// var API_KEY = '365ed8d028418265c841a76aeebd8ace-9dfbeecd-9d59e229';
+	// var DOMAIN = 'YOUR_DOMAIN_NAME';
+	// var mailgun = require('mailgun-js')({apiKey: API_KEY, domain: DOMAIN});
+	
+	// const data = {
+	// from: 'Excited User <me@samples.mailgun.org>',
+	// to: 'foo@example.com, bar@example.com',
+	// subject: 'Hello',
+	// text: 'Testing some Mailgun awesomeness!'
+	// };
+	
+	// mailgun.messages().send(data, (error, body) => {
+	// console.log(body);
+	// });
+	
 })
+
+
+
 
 // `${DOMAIN}success?name=${req.query.name}&email=${req.query.email}&mobile=${req.query.mobile}&branch=${req.query.branch}&year=${req.query.year}&college=${req.query.college}&event=${req.query.event}&amount=${req.query.amount}`
 
@@ -69,15 +97,15 @@ app.get('/paytm', (req, res) => {
 		"EMAIL" : req.query.email,
 		"TXN_AMOUNT" : req.query.amount,
 		"CALLBACK_URL" :`${DOMAIN}success?name=${req.query.name}&email=${req.query.email}&mobile=${req.query.mobile}&branch=${req.query.branch}&year=${req.query.year}&college=${req.query.college}&event=${req.query.event}&amount=${req.query.amount}`,
-
+		
 		// "CALLBACK_URL" :`http://127.0.0.1:3000/success?name=${req.query.name}&email=${req.query.email}&mobile=${req.query.mobile}&branch=${req.query.branch}&year=${req.query.year}&college=${req.query.college}&event=${req.query.event}&amount=${req.query.amount}`,
 	};
 	// tdm2TE!6kUP%vlUb
 	// u#R7ezMHf4rNiJ3J
 	checksum_lib.genchecksum(paytmParams, "tdm2TE!6kUP%vlUb", function(err, checksum){
-
-		var url = "https://securegw.paytm.in/order/process";
-
+		
+		var url = "https://securegw-stage.paytm.in/order/process";
+		
 		res.writeHead(200, {'Content-Type': 'text/html'});
 		res.write('<html>');
 		res.write('<head>');
@@ -123,7 +151,7 @@ app.post('/register',(req,res)=>{
 });
 
 app.post('/success', (req, res) => {
-
+	
 	if (req.body.RESPMSG === "Txn Success") {
 		Customers.create({
 			OrderId: req.body.ORDERID,
