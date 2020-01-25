@@ -91,11 +91,9 @@ app.get('/paytm', (req, res) => {
 		res.write('</body>');
 		res.write('</html>');
 		res.end();
-		
 	});
+	
 });
-
-// app.use('/payverify', express.static(__dirname + '/paytm.html'));
 
 app.post('/register',(req,res)=>{
 	Customers.findOne({
@@ -118,38 +116,9 @@ app.post('/register',(req,res)=>{
 	});
 });
 
-app.post('/finalize',(req,res)=>{
-	var paytmChecksum = "";
-	
-	/**
-	* Create an Object from the parameters received in POST
-	* received_data should contains all data received in POST
-	*/
-	var paytmParams = {};
-	for(var key in res){
-		if(key == "CHECKSUMHASH") {
-			paytmChecksum = res[key];
-		} else {
-			paytmParams[key] = res[key];
-		}
-	}
-	
-	/**
-	* Verify checksum
-	* Find your Merchant Key in your Paytm Dashboard at https://dashboard.paytm.com/next/apikeys 
-	*/
-	var isValidChecksum = checksum_lib.verifychecksum(paytmParams, "tdm2TE!6kUP%vlUb", paytmChecksum);
-	if(isValidChecksum) {
-		console.log("Checksum Matched");
-
-
-
-	} else {
-		console.log("Checksum Mismatched");
-	}
-})
-
 app.post('/success', (req, res) => {
+
+	if (req.body.RESPMSG === "Txn Success") {
 		Customers.create({
 			OrderId: req.body.ORDERID,
 			Name: req.query.name,
@@ -162,12 +131,16 @@ app.post('/success', (req, res) => {
 			Amount: req.query.amount
 		})
 		.then(() => {
-			// res.redirect(`/email?mail=${req.query.email}`);
-			res.redirect('/success');
+			res.redirect(`/email?mail=${req.query.email}`);
+			// res.redirect('/success');
 		});
+	} else {
+		res.redirect('/failed');
+	}
 });
-app.use('/success', express.static(__dirname + '/success.html'));
 
+app.use('/success', express.static(__dirname + '/success.html'));
+app.use('/failed', express.static(__dirname + '/failed.html'));
 
 database.sync()
 .then(()=>{
