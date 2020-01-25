@@ -44,8 +44,19 @@ app.get('/email',(req,res)=>{
 	var mailOptions = {
 		from: 'teamenthiran@gmail.com',
 		to: req.query.mail,
-		subject: 'Registration Confirmation',
-		text: 'You are registered'
+		subject: 'Registration Reciept',
+		text: `Dear ${req.query.name}, 
+		Thank you for registering in Metacognition 2020, your order id is ${req.query.orderID} and your event is ${req.query.event}. 
+		Events will be taking place on 18th and 19th of February. 
+		Kindly note the order id and show this email on the day of the event. 
+
+		For any further information contact :
+		Bharat (9917125487)
+		Dushyant (9260957631)
+		
+		Regards
+		Team Enthiran-The Technical Club
+		Galgotias College of Engineering and Technology.`
 	};
 	
 	transporter.sendMail(mailOptions, function(error, info){
@@ -57,21 +68,6 @@ app.get('/email',(req,res)=>{
 		}
 	})
 	
-	
-	// var API_KEY = '365ed8d028418265c841a76aeebd8ace-9dfbeecd-9d59e229';
-	// var DOMAIN = 'YOUR_DOMAIN_NAME';
-	// var mailgun = require('mailgun-js')({apiKey: API_KEY, domain: DOMAIN});
-	
-	// const data = {
-	// from: 'Excited User <me@samples.mailgun.org>',
-	// to: 'foo@example.com, bar@example.com',
-	// subject: 'Hello',
-	// text: 'Testing some Mailgun awesomeness!'
-	// };
-	
-	// mailgun.messages().send(data, (error, body) => {
-	// console.log(body);
-	// });
 	
 })
 
@@ -165,7 +161,7 @@ app.post('/success', (req, res) => {
 			Amount: req.query.amount
 		})
 		.then(() => {
-			res.redirect(`/email?mail=${req.query.email}`);
+			res.redirect(`/email?mail=${req.query.email}&name=${req.query.name}&orderID=${req.body.ORDERID}&event=${req.query.event}`);
 			// res.redirect('/success');
 		});
 	} else {
