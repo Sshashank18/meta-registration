@@ -86,8 +86,8 @@ app.get('/paytm', (req, res) => {
 	const customerId = shortid.generate();
 	
 	var paytmParams = {
-		// "MID" : "uduSIE08328076085049",
-		"MID" : "cuZBeb01092536643568",
+		"MID" : "uduSIE08328076085049",
+		// "MID" : "cuZBeb01092536643568",
 		"WEBSITE" : "WEBSTAGING",
 		"INDUSTRY_TYPE_ID" : "Retail",
 		"CHANNEL_ID" : "WEB",
@@ -102,7 +102,7 @@ app.get('/paytm', (req, res) => {
 	};
 	// tdm2TE!6kUP%vlUb
 	// u#R7ezMHf4rNiJ3J
-	checksum_lib.genchecksum(paytmParams, "u#R7ezMHf4rNiJ3J", function(err, checksum){
+	checksum_lib.genchecksum(paytmParams, "tdm2TE!6kUP%vlUb", function(err, checksum){
 		
 		var url = "https://securegw-stage.paytm.in/order/process";
 		
