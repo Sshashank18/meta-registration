@@ -104,7 +104,7 @@ app.get('/paytm', (req, res) => {
 	// u#R7ezMHf4rNiJ3J
 	checksum_lib.genchecksum(paytmParams, "tdm2TE!6kUP%vlUb", function(err, checksum){
 		
-		var url = "https://securegw-stage.paytm.in/order/process";
+		var url = "https://securegw.paytm.in/order/process";
 		
 		res.writeHead(200, {'Content-Type': 'text/html'});
 		res.write('<html>');
