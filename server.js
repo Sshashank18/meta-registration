@@ -82,8 +82,8 @@ app.get('/paytm', (req, res) => {
 	const customerId = shortid.generate();
 	
 	var paytmParams = {
-		// "MID" : "uduSIE08328076085049",
-		"MID" : "cuZBeb01092536643568",
+		"MID" : "uduSIE08328076085049",
+		// "MID" : "cuZBeb01092536643568",
 		"WEBSITE" : "WEBSTAGING",
 		"INDUSTRY_TYPE_ID" : "Retail",
 		"CHANNEL_ID" : "WEB",
@@ -92,15 +92,15 @@ app.get('/paytm', (req, res) => {
 		"MOBILE_NO" : req.query.mobile,
 		"EMAIL" : req.query.email,
 		"TXN_AMOUNT" : req.query.amount,
-		// "CALLBACK_URL" :`${DOMAIN}success?name=${req.query.name}&email=${req.query.email}&mobile=${req.query.mobile}&branch=${req.query.branch}&year=${req.query.year}&college=${req.query.college}&event=${req.query.event}&amount=${req.query.amount}`,
+		"CALLBACK_URL" :`${DOMAIN}success?name=${req.query.name}&email=${req.query.email}&mobile=${req.query.mobile}&branch=${req.query.branch}&year=${req.query.year}&college=${req.query.college}&event=${req.query.event}&amount=${req.query.amount}`,
 		
-		"CALLBACK_URL" :`http://127.0.0.1:3000/success?name=${req.query.name}&email=${req.query.email}&mobile=${req.query.mobile}&branch=${req.query.branch}&year=${req.query.year}&college=${req.query.college}&event=${req.query.event}&amount=${req.query.amount}`,
+		// "CALLBACK_URL" :`http://127.0.0.1:3000/success?name=${req.query.name}&email=${req.query.email}&mobile=${req.query.mobile}&branch=${req.query.branch}&year=${req.query.year}&college=${req.query.college}&event=${req.query.event}&amount=${req.query.amount}`,
 	};
 	// tdm2TE!6kUP%vlUb
 	// u#R7ezMHf4rNiJ3J
-	checksum_lib.genchecksum(paytmParams, "u#R7ezMHf4rNiJ3J", function(err, checksum){
+	checksum_lib.genchecksum(paytmParams, "tdm2TE!6kUP%vlUb", function(err, checksum){
 		
-		var url = "https://securegw-stage.paytm.in/order/process";
+		var url = "https://securegw.paytm.in/order/process";
 		
 		res.writeHead(200, {'Content-Type': 'text/html'});
 		res.write('<html>');
