@@ -45,17 +45,17 @@ app.get('/email',(req,res)=>{
 		from: 'teamenthiran@gmail.com',
 		to: req.query.mail,
 		subject: 'Registration Reciept',
-		text: `Dear ${req.query.name}, 
-		Thank you for registering in Metacognition 2020, your order id is ${req.query.orderID} and your event is ${req.query.event}. 
-		Events will be taking place on 18th and 19th of February. 
-		Kindly note the order id and show this email on the day of the event. 
+		html: `Dear <b>${req.query.name}</b>, <br>
+		Thank you for registering in Metacognition 2020, your order id is <b>${req.query.orderID}</b> and your event is <b${req.query.event}b>. <br>
+		Events will be taking place on 18th and 19th of February. <br>
+		Kindly note the order id and show this email on the day of the event.<br> 
 
-		For any further information contact :
-		Bharat (9917125487)
-		Dushyant (9260957631)
+		For any further information contact :<br>
+		Bharat (9917125487)<br>
+		Dushyant (9260957631)<br>
 		
-		Regards
-		Team Enthiran-The Technical Club
+		Regards<br>
+		Team Enthiran-The Technical Club<br>
 		Galgotias College of Engineering and Technology.`
 	};
 	
