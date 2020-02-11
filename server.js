@@ -82,9 +82,9 @@ app.get('/paytm', (req, res) => {
 	const customerId = shortid.generate();
 	
 	var paytmParams = {
-		"MID" : "uduSIE08328076085049",
+		"MID" : "SwuNwH30670761906341",
 		// "MID" : "cuZBeb01092536643568",
-		"WEBSITE" : "WEBSTAGING",
+		"WEBSITE" : "DEFAULT",
 		"INDUSTRY_TYPE_ID" : "Retail",
 		"CHANNEL_ID" : "WEB",
 		"ORDER_ID" : orderId,
@@ -98,7 +98,7 @@ app.get('/paytm', (req, res) => {
 	};
 	// tdm2TE!6kUP%vlUb
 	// u#R7ezMHf4rNiJ3J
-	checksum_lib.genchecksum(paytmParams, "tdm2TE!6kUP%vlUb", function(err, checksum){
+	checksum_lib.genchecksum(paytmParams, "PlTxSCkOJP#@LZ4&", function(err, checksum){
 		
 		var url = "https://securegw.paytm.in/order/process";
 		
