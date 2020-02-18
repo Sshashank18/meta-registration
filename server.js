@@ -148,7 +148,7 @@ app.post('/register',(req,res)=>{
 
 app.post('/success', (req, res) => {
 	
-	if (req.body.RESPMSG === "Txn Success") {
+	if (req.body.RESPMSG === "Txn Success") {payt
 		Customers.create({
 			OrderId: req.body.ORDERID,
 			Name: req.query.name,
