@@ -76,14 +76,15 @@ app.get('/email',(req,res)=>{
 
 // `${DOMAIN}success?name=${req.query.name}&email=${req.query.email}&mobile=${req.query.mobile}&branch=${req.query.branch}&year=${req.query.year}&college=${req.query.college}&event=${req.query.event}&amount=${req.query.amount}`
 
+const {MID,MERC_KEY} = require('./environments');
+
 app.get('/paytm', (req, res) => {
 	
 	const orderId = shortid.generate();
 	const customerId = shortid.generate();
 	
 	var paytmParams = {
-		"MID" : "SwuNwH30670761906341",
-		// "MID" : "cuZBeb01092536643568",
+		"MID" : MID,
 		"WEBSITE" : "DEFAULT",
 		"INDUSTRY_TYPE_ID" : "Retail",
 		"CHANNEL_ID" : "WEB",
@@ -96,12 +97,12 @@ app.get('/paytm', (req, res) => {
 		
 		// "CALLBACK_URL" :`http://127.0.0.1:3000/success?name=${req.query.name}&email=${req.query.email}&mobile=${req.query.mobile}&branch=${req.query.branch}&year=${req.query.year}&college=${req.query.college}&event=${req.query.event}&amount=${req.query.amount}`,
 	};
-	// tdm2TE!6kUP%vlUb
-	// u#R7ezMHf4rNiJ3J
-	checksum_lib.genchecksum(paytmParams, "PlTxSCkOJP#@LZ4&", function(err, checksum){
+	
+	checksum_lib.genchecksum(paytmParams, MERC_KEY, function(err, checksum){
 		
-		var url = "https://securegw.paytm.in/order/process";
-		
+		// var url = "https://securegw.paytm.in/order/process";
+		var url = "https://securegw-stage.paytm.in/order/process"   //For testing purposes
+
 		res.writeHead(200, {'Content-Type': 'text/html'});
 		res.write('<html>');
 		res.write('<head>');

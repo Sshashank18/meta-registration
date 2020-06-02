@@ -9,3 +9,6 @@ module.exports.DATABASE_PORT = 5432;
 module.exports.DATABASE_PASSWORD = "ac523d698227098cf1734ea4577d245ef62aa01547cb5bebcd76ab9f5589b29e";
 
 
+module.exports.MID = "cuZBeb01092536643568";
+module.exports.MERC_KEY = "u#R7ezMHf4rNiJ3J";
+
