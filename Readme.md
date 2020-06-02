@@ -1,5 +1,5 @@
 # Metacognition Registration
-Metacognition is Galgotias College of Engineering and Technology yearly Techfest. This project is based on registering the user for the fest. This project is connected with the Metacognition frontend project.
+Metacognition is Galgotias College of Engineering and Technology yearly Techfest. This project is based on registering the user for the fest. This project is connected with the Metacognition frontend project https://metacognition2020.co/.
 Paytm APIs has been used for accepting payments from Paytm.
 After the successful registration, a mail will be delievered for confirmation.
 
